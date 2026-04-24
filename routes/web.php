@@ -1,5 +1,5 @@
 <?php
-//админка moderator@example.com password123
+//админка taranmaks2017@yandex.ru password123
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
