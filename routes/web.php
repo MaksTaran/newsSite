@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
 
+
+Route::resource('articles', ArticleController::class);
 Route::get('/news', [ArticleController::class, 'index'])->name('articles.index');
 
 Route::get('/signin', [AuthController::class, 'create']);

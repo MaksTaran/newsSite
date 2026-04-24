@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Новости</h1>
-    <table border="1" cellpadding="10">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr><th>Изображение</th><th>Заголовок</th><th>Текст</th></tr>
         </thead>
