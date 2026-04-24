@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
+Route::get('/signin', [AuthController::class, 'create']);
+Route::post('/signin', [AuthController::class, 'registration']);
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/gallery/{id}', [MainController::class, 'gallery']);
