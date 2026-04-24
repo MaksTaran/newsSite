@@ -4,7 +4,9 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Новости (из БД)</h1>
+            @can('create', App\Models\Article::class)
             <a href="{{ route('articles.create') }}" class="btn btn-success">Создать новость</a>
+            @endcan
         </div>
 
         <div class="row">

@@ -1,10 +1,13 @@
 <?php
-
+//админка moderator@example.com password123
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SanctumAuthController; // новый контроллер для Sanctum
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
+
+
 // Публичные маршруты (доступны всем)
 Route::get('/', [MainController::class, 'index']); // главная с JSON
 Route::get('/about', function () {
@@ -20,9 +23,6 @@ Route::get('/contacts', function () {
 });
 Route::get('/gallery/{id}', [MainController::class, 'gallery']); // галерея
 
-// Список новостей и просмотр одной – открыты всем
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Гостевые маршруты для аутентификации
 Route::get('/register', [SanctumAuthController::class, 'showRegisterForm'])->name('register');
@@ -37,7 +37,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/home', function () {
         return view('home');
     })->name('home');
-
+    Route::post('/articles/{article}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     // CRUD для новостей (create, store, edit, update, destroy) – только авторизованным
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
@@ -45,3 +46,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
     Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 });
+// Список новостей и просмотр одной – открыты всем
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');

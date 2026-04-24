@@ -7,8 +7,9 @@ use App\Models\Article;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
-    {
-        Article::factory()->count(10)->create();
-    }
+   public function run()
+{
+    $this->call(RoleSeeder::class);
+
+}
 }
